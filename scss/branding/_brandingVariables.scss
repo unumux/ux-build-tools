@@ -1,0 +1,338 @@
+/***************************
+	COLOR VARIABLES
+***************************/
+
+$steel-blue : #265b80;
+$pewter : #8394a1;
+$slate : #5b7183;
+$moss : #688465;
+$leaf : #67a14c;
+$sand : #e0ddce;
+
+$dark-red : #7f2725;
+$grape : #5f3a6c;
+$pumpkin : #e0832e;
+$charcoal : #1f3340;
+
+$ocean : #3baecc;
+$asparagus : #a4cc44;
+$mint : #30aa83;
+$tangerine: #f1c44f;
+
+$white: #fff;
+$silver: #D4DADE;
+$platinum: #F2F4F5;
+
+/***************************
+	FONT VARIABLES
+***************************/
+
+$font-path:  "../fonts/" !default;
+
+
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-darker:            lighten(#000, 13.5%) !default; // #222
+$gray-dark:              darken(#A2AFB9, 20%);
+$gray:                   #A2AFB9;
+$gray-light:             #E0E4E7;
+$gray-lighter:           #ebeeef; // #eee
+
+$brand-primary:         $steel-blue;
+$brand-success:         $leaf;
+$brand-info:            $pewter;
+$brand-warning:         $pumpkin;
+$brand-danger:          $dark-red;
+
+
+/*================================
+	SCAFFOLDING
+================================*/
+
+//** Background color for `<body>`.
+$body-bg:               #fff;
+//** Global text color on `<body>`.
+$text-color:            $charcoal;
+
+//** Global textual link color.
+$link-color:            $brand-primary !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+
+
+/*================================
+	TYPOGRPAHY
+================================*/
+
+$font-family-sans-serif:  "Source Sans Pro", Verdana, Arial, sans-serif;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+
+$font-size-base:          16px;
+// $font-size-large:         1.2em; 
+// $font-size-small:         .8em; 
+
+// $font-size-h1:            2.5em; 
+// $font-size-h2:            2em; 
+// $font-size-h3:            1.5em; 
+// $font-size-h4:            1.2em; 
+// $font-size-h5:            $font-size-base;
+// $font-size-h6:            .8em; 
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base:        1.5; // 20/14
+
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+//$line-height-computed:    2em;
+
+//** By default, this inherits from the `<body>`.
+$headings-font-family:    'Oswald Light', Arial, sans-serif;
+$headings-font-family-alt: "Source Sans Pro", Verdana, Arial, sans-serif;
+$headings-font-weight:    500 !default;
+$headings-line-height:    1.1 !default;
+$headings-color:		  $steel-blue;
+
+/*================================
+	COMPONENTS
+================================*/
+
+$border-radius-base:        0;
+$border-radius-large:       0;
+$border-radius-small:       0;
+
+// $padding-base-vertical:     5px;
+// $padding-base-horizontal:   15px;
+
+// $padding-large-vertical:    10px !default;
+// $padding-large-horizontal:  18px !default;
+
+// $padding-small-vertical:    5px !default;
+// $padding-small-horizontal:  12px !default;
+
+// $padding-xs-vertical:       1px !default;
+// $padding-xs-horizontal:     7px !default;
+
+$thumbnail-border:   		   $charcoal;
+
+/*================================
+	fORM STATES & ALERTS
+================================*/
+
+$state-success-text:             $moss;
+$state-success-bg:               #D9E7D2;
+$state-success-border:           #D9E7D2;
+
+$state-info-text:                $slate;
+$state-info-bg:                  #CEEBF2;
+$state-info-border:              #CEEBF2;
+
+$state-warning-text:             $pumpkin;
+$state-warning-bg:               #FBF0D3;
+$state-warning-border:           #FBF0D3;
+
+$state-danger-text:              $dark-red;
+$state-danger-bg:                #E5D4D3;
+$state-danger-border:            #E5D4D3;
+
+
+$alert-padding:               15px;
+$alert-border-radius:         0;
+$alert-link-font-weight:      600;
+
+$alert-success-bg:            $state-success-bg;
+$alert-success-text:          $state-success-text;
+$alert-success-border:        $state-success-border;
+
+$alert-info-bg:               $state-info-bg;
+$alert-info-text:             $state-info-text;
+$alert-info-border:           $state-info-border;
+
+$alert-warning-bg:            $state-warning-bg !default;
+$alert-warning-text:          $state-warning-text !default;
+$alert-warning-border:        $state-warning-border !default;
+
+$alert-danger-bg:             $state-danger-bg !default;
+$alert-danger-text:           $state-danger-text !default;
+$alert-danger-border:         $state-danger-border !default;
+
+$alert-global-positive-bg:    	$leaf !default;
+$alert-global-positive-text:  	#FFF !default;
+$alert-global-positive-border:	$leaf !default;
+
+$alert-global-info-bg:    	$steel-blue !default;
+$alert-global-info-text:  	#FFF !default;
+$alert-global-info-border:	$steel-blue !default;
+
+$alert-global-warning-bg:    	$pumpkin !default;
+$alert-global-warning-text:  	#FFF !default;
+$alert-global-warning-border:	$pumpkin !default;
+
+//================================
+	//BUTTON
+//================================
+
+$btn-font-weight: 600;
+
+//================================
+	//PROGRESS BARS
+//================================
+
+//** Background color of the whole progress component
+$progress-bg:                 $gray-lighter;
+//** Progress bar text color
+$progress-bar-color:          #fff !default;
+
+//** Default progress bar color
+$progress-bar-bg:             $leaf;
+//** Success progress bar color
+$progress-bar-success-bg:     $brand-success !default;
+//** Warning progress bar color
+$progress-bar-warning-bg:     $brand-warning !default;
+//** Danger progress bar color
+$progress-bar-danger-bg:      $brand-danger !default;
+//** Info progress bar color
+$progress-bar-info-bg:        #3BAECC;
+
+//================================
+	//NAVBAR
+//================================
+
+$navbar-default-color:             $white;
+$navbar-default-bg:                $steel-blue;
+$navbar-default-border:            $steel-blue;
+
+// Navbar links
+$navbar-default-link-color:                $white;
+$navbar-default-link-hover-color:          $white;
+$navbar-default-link-hover-bg:             darken($navbar-default-bg, 6.5%);
+$navbar-default-link-active-color:         $white;
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%);
+$navbar-default-link-disabled-color:       #ccc !default;
+$navbar-default-link-disabled-bg:          transparent !default;
+
+// Navbar brand label
+$navbar-default-brand-color:               $navbar-default-link-color !default;
+$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-bg:            transparent !default;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           #ddd !default;
+$navbar-default-toggle-icon-bar-bg:        #888 !default;
+$navbar-default-toggle-border-color:       #ddd !default;
+
+// Navbar Partial
+$navbar-partial-color:                     $steel-blue;
+$navbar-partial-bg: 					   $gray-lighter;
+$navbar-partial-border:					   transparent;
+
+$navbar-partial-link-color:         	   $pewter;
+$navbar-partial-link-hover-color:		   $navbar-partial-link-color;
+$navbar-partial-link-hover-bg:             #DCE0E2;
+$navbar-partial-link-active-color:         $navbar-partial-link-color;
+$navbar-partial-link-active-bg:			   $navbar-partial-link-hover-bg;
+
+$navbar-partial-brand-color:               $steel-blue;
+$navbar-partial-brand-hover-color: 		   $gray-light;
+
+//================================
+	//NAVS
+//================================
+
+$nav-tabs-border-color: 				   #C1C9D0;
+$nav-tabs-active-link-hover-border-color:  $nav-tabs-border-color;
+$nav-tabs-active-link-hover-color:         $charcoal;
+
+//================================
+	//BADGES
+//================================
+
+$badge-bg:                    $pewter;
+
+$badge-active-color:          $pewter;
+
+$badge-border-radius:         0;
+
+//================================
+	//BREADCRUMBS
+//================================
+
+$breadcrumb-padding-vertical:   8px !default;
+$breadcrumb-padding-horizontal: 15px !default;
+//** Breadcrumb background color
+$breadcrumb-bg:                 $gray-lighter;
+//** Breadcrumb text color
+$breadcrumb-color:              #ccc !default;
+//** Text color of current page in the breadcrumb
+$breadcrumb-active-color:       #999999;
+//** Textual separator for between breadcrumb elements
+$breadcrumb-separator:          "/" !default;
+
+//================================
+	//WELLS
+//================================
+
+$well-bg:                     #F2F4F5;
+$well-border:                 darken($well-bg, 7%) !default;
+
+//================================
+	//PANELS
+//================================
+
+$panel-default-text:          $slate;
+$panel-default-border:        #C1C9D0;
+$panel-default-heading-bg:    $gray-lighter;
+
+
+//================================
+	//LABELS
+//================================
+
+$label-default-bg:   		  #C7C7CC;
+$label-slate-bg:   			  $slate;
+$label-steel-blue-bg: 		  $steel-blue;
+$label-leaf-bg:				  $leaf;
+$label-ocean-bg:			  $ocean;
+$label-pumpkin-bg: 			  $pumpkin;
+$label-dark-red-bg:			  $dark-red;
+
+//================================
+	//PAGINATION
+//================================
+
+$pagination-color:                     $link-color !default;
+$pagination-link-color:                $pumpkin !default;
+$pagination-bg:                        $gray-lighter;
+$pagination-border:                    $pewter;
+
+$pagination-hover-color:               #fff;
+$pagination-hover-bg:                  $steel-blue;
+$pagination-hover-border:              $steel-blue;
+
+$pagination-active-color:              #fff;
+$pagination-active-bg:                 $brand-primary !default;
+$pagination-active-border:             $brand-primary !default;
+
+$pagination-disabled-color:            $gray;
+$pagination-disabled-bg:               $platinum;
+$pagination-disabled-border:           #ddd !default;
+
+//================================
+	//TABLES
+//================================
+
+$table-bg-accent:               #F5F7F8;
+
+$table-border-color:            #C1C9D0;
+$table-head-bg: 				$gray-lighter;
+
+$row-highlight-success-bg:      #E3EFC6;
+$row-highlight-warning-bg:      #FBF0D3;

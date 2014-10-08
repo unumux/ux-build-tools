@@ -1,0 +1,22 @@
+.nav-pills {
+  .badge {
+  	float:right;
+  }
+
+  > li {
+
+    // Active state
+    &.active > a {
+     .badge {
+     	background: $pumpkin;
+     	color: #fff;
+     }
+    }
+  }
+}
+
+.nav-stacked {
+	a {
+		color: $pumpkin;
+	}
+}

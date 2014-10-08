@@ -1,0 +1,50 @@
+#impersonationWrapper {
+	background: lighten($tangerine, 15%);
+    padding:.5em 0 .6em 0;
+    width:100%;
+    z-index: 10;
+
+    p {
+      color:#333;
+	  display:block;
+      float:left;
+      font-size:1.3em;
+      margin: .75em 0 .5em 1em;
+    }
+}
+
+#impersonationWrapper a,
+#impersonationWrapper a.btn {
+	background: $leaf;
+    box-shadow: 0 2px 2px 0 #444;
+	border-radius:4px;
+	display:block;
+	font-size:1.3em;
+	font-weight:400;
+	float:right;
+	margin:5px auto;
+	padding: .5em 1em;
+	position:relative;
+	text-align:center;
+
+    &:hover {
+      background:darken($leaf, 10%);
+	  box-shadow:none;
+	  text-decoration:none;
+    }
+}
+
+@media (max-width:480px) {
+        
+  #impersonationWrapper {
+      text-align:center;
+
+      a, p, a.btn {
+        float:none;
+      }
+
+      p {
+        margin:.25em .5em;
+      }
+  }
+}

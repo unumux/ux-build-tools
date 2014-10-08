@@ -1,0 +1,61 @@
+input,
+select {
+	background: #fff;
+	border: 1px solid $gray;
+	color: $charcoal;
+	display:block;
+	margin:0 0 10px;
+	padding: 5px 15px;
+	transition: border-color 0.15s ease-in-out 0s, 
+				box-shadow 0.15s ease-in-out 0s;
+
+	&[disabled],
+	.disabled {
+		background: $gray-light;
+		cursor:not-allowed;
+	}
+}
+
+textarea {
+	border: 1px solid $gray;
+	min-height:200px;
+	margin:0 0 10px;
+	padding:20px;
+	width:100%;
+}
+
+.input-group input {
+	display:table-cell;
+	float:left;
+	margin:0;
+	position:relative;
+	z-index:2;
+}
+
+.input-group-addon {
+	background: $gray-light;
+	border-color:$gray;
+	color: $charcoal;
+}
+
+.has-success input,
+.has-success select,
+.has-success textarea {
+	border-color: $leaf;
+	color: $leaf;
+}
+
+.has-warning input,
+.has-warning select,
+.has-warning textarea {
+	border-color: $pumpkin;
+	color: $pumpkin;
+}
+
+.has-error input,
+.has-error select,
+.has-error textarea {
+	background: #FDF6E5;
+	border-color: $dark-red;
+	color: $dark-red;
+}

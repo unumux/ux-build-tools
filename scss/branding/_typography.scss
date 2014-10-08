@@ -1,0 +1,36 @@
+h1, .h1 {
+  color: $steel-blue;
+  font-family:$headings-font-family;
+  font-weight:300;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: $headings-font-family-alt;
+  font-weight:600;
+}
+
+h2 {
+	color: $dark-red;
+}
+
+h3, h4, h5, h6 {
+	color: $charcoal;
+}
+
+ul {
+	list-style-type:square;
+}
+
+.highlight {
+	background: $tangerine;
+}
+
+.shortcut {
+	background: $charcoal;
+	border-radius:3px;
+	color: #fff;
+}
+
+kbd {
+	font-family: $font-family-sans-serif;
+}

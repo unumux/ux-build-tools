@@ -1,0 +1,95 @@
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+	opacity:1;
+}
+
+.btn-steel {
+  @include button-color-variant(#fff, $steel-blue, darken($steel-blue, 10));
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      color: darken(#fff, 20);
+    }
+  }
+}
+
+.btn-pewter {
+  @include button-color-variant(#fff, $pewter, darken($pewter, 10));
+}
+
+.btn-slate {
+  @include button-color-variant(#fff, $slate, darken($slate, 10));
+}
+
+.btn-silver {
+  @include button-color-variant($charcoal, $silver, darken($silver, 10));
+}
+
+.btn-platinum {
+  @include button-color-variant($charcoal, $platinum, darken($platinum, 10));
+}
+
+.btn-moss {
+  @include button-color-variant(#fff, $moss, darken($moss, 10));
+}
+
+.btn-leaf {
+  @include button-color-variant(#fff, $leaf, darken($leaf, 10));
+}
+
+.btn-sand {
+  @include button-color-variant($charcoal, $sand, darken($sand, 10));
+}
+
+.btn-charcoal {
+  @include button-color-variant(#fff, $charcoal, darken($charcoal, 10));
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      color: darken(#fff, 20);
+    }
+  }
+}
+
+.btn-grape {
+  @include button-color-variant(#fff, $grape, darken($grape, 10));
+}
+
+.btn-dark-red {
+  @include button-color-variant(#fff, $dark-red, darken($dark-red, 10));
+}
+
+.btn-pumpkin {
+  @include button-color-variant(#fff, $pumpkin, darken($pumpkin, 10));
+}
+
+.btn-tangerine {
+  @include button-color-variant(#fff, $tangerine, darken($tangerine, 10));
+}
+
+.btn-asparagus {
+  @include button-color-variant(#fff, $asparagus, darken($asparagus, 10));
+}
+
+.btn-mint {
+  @include button-color-variant(#fff, $mint, darken($mint, 10));
+}
+
+.btn-ocean {
+  @include button-color-variant(#fff, $ocean, darken($ocean, 10));
+}
+
+.btn-group .btn:first-child {
+  border-right-width:2px; 
+}
+

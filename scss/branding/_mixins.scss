@@ -1,0 +1,45 @@
+@mixin button-color-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-width: 0;
+  border-color: $border;
+  border-bottom-width:3px;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $color;
+    background-color: darken($background, 10%);
+        border-bottom-color: transparent;
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      color: darken($background, 25);
+      background-color: $background;
+      border-bottom-color: transparent;
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $color;
+  }
+}
+
+@mixin badge-variant($color, $background) {
+  color: $color;
+  background-color: $background;
+}

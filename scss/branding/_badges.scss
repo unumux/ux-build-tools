@@ -1,0 +1,47 @@
+.badge {
+	margin:0 0 0 10px;
+}
+
+.badge-silver {
+  @include badge-variant($charcoal, $silver);
+}
+
+.badge-slate {
+  @include badge-variant($white, $slate);
+}
+
+.badge-steel-blue {
+  @include badge-variant($white, $steel-blue);
+}
+
+.badge-ocean {
+  @include badge-variant($white, $ocean);
+}
+
+.badge-leaf {
+  @include badge-variant($white, $leaf);
+}
+
+.badge-tangerine {
+  @include badge-variant($white, $tangerine);
+}
+
+.badge-pumpkin {
+  @include badge-variant($white, $pumpkin);
+}
+
+.badge-dark-red {
+  @include badge-variant($white, $dark-red);
+}
+
+.badge-grape {
+  @include badge-variant($white, $grape);
+}
+
+.badge-charcoal {
+  @include badge-variant($white, $charcoal);
+}
+
+.badge-subscript {
+	margin: 0;
+}

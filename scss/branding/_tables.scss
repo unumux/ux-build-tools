@@ -1,0 +1,51 @@
+thead {
+	background: $table-head-bg;
+	border-top: 1px solid $table-border-color;
+}
+
+.table {
+	> thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 1px solid $table-border-color;  
+  }
+}
+
+.table-striped {
+  > tbody > tr:nth-child(odd) {
+    > td,
+    > th {
+      background-color: transparent;
+    }
+  }
+   > tbody > tr:nth-child(even) {
+    > td {
+      background-color: $table-bg-accent;
+    }
+  }
+
+  > tbody,
+  > tfoot {
+    > tr {
+      > td {
+        border-top: none;
+      }
+    }
+  }
+}
+
+.table-highlighted {
+	 > tbody,
+	  > tfoot {
+	    > tr {
+	      > td {
+	        border-top: none;
+	      }
+	    }
+  }
+}
+
+@include table-row-variant('success', #E3EFC6);
+
+.has-table .table {
+	margin:0;
+}

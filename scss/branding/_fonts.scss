@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'Source Sans Pro';
+     src: url('#{$font-path}SourceSansPro/SourceSansPro-Regular.eot');
+    src: url('#{$font-path}SourceSansPro/SourceSansPro-Regular.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-Regular.ttf') format('truetype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-Regular.svg#SourceSansProRegular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+     src: url('#{$font-path}SourceSansPro/SourceSansPro-Italic.eot');
+    src: url('#{$font-path}SourceSansPro/SourceSansPro-Italic.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-Italic.ttf') format('truetype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-Italic.svg#SourceSansProRegular') format('svg');
+    font-weight: 400;
+    font-style: italic;
+} 
+
+@font-face {
+    font-family: 'Source Sans Pro';
+     src: url('#{$font-path}SourceSansPro/SourceSansPro-SemiBold.eot');
+    src: url('#{$font-path}SourceSansPro/SourceSansPro-SemiBold.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-SemiBold.ttf') format('truetype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-SemiBold.svg#SourceSansProRegular') format('svg');
+    font-weight: 600;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: 'Source Sans Pro';
+     src: url('#{$font-path}SourceSansPro/SourceSansPro-Bold.eot');
+    src: url('#{$font-path}SourceSansPro/SourceSansPro-Bold.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-Bold.ttf') format('truetype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-Bold.svg#SourceSansProRegular') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+     src: url('#{$font-path}SourceSansPro/SourceSansPro-Light.eot');
+    src: url('#{$font-path}SourceSansPro/SourceSansPro-Light.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-Light.ttf') format('truetype'),
+         url('#{$font-path}SourceSansPro/SourceSansPro-Light.svg#SourceSansProRegular') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald Light';
+    src: url('#{$font-path}oswald/oswald-light.eot');
+    src: url('#{$font-path}oswald/oswald-light.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path}oswald/oswald-light.woff') format('woff'),
+         url('#{$font-path}oswald/oswald-light.ttf') format('truetype'),
+         url('#{$font-path}oswald/oswald-light.svg#oswaldlight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}

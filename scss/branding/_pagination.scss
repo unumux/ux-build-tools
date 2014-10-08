@@ -1,0 +1,91 @@
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: $line-height-computed 0;
+  border-radius: $border-radius-base;
+
+  > li {
+    float: left; // Remove list-style and block-level defaults
+    > a,
+    > span {
+      position: relative;
+      float: left; // Collapse white-space
+      padding: $padding-base-vertical $padding-base-horizontal;
+      line-height: $line-height-base;
+      text-decoration: none;
+      color: $pagination-color;
+      background-color: $pagination-bg;
+      border: none;
+      border-bottom: 2px solid $pewter;
+      margin-left: -1px;
+    }
+
+    &:first-child {
+      margin:0 10px 0 0;
+    }
+
+    &:last-child {
+      margin:0 0 0 10px;
+
+      a {
+        border-left:none;
+      }
+    }
+  }
+
+  li + li a {
+    border-left:1px solid $pewter;
+  }
+}
+
+.pagination-link {
+  > li {
+    float: left; // Remove list-style and block-level defaults
+    > a,
+    > span {
+      position: relative;
+      float: left; // Collapse white-space
+      padding: $padding-base-vertical $padding-base-horizontal;
+      line-height: $line-height-base;
+      text-decoration: underline;
+      color: $pagination-link-color;
+      background-color: transparent;
+      border: none;
+    }
+
+    &:first-child {
+      margin:0 10px 0 0;
+    }
+
+    &:last-child {
+      margin:0 0 0 10px;
+
+      a {
+        border-left:none;
+      }
+    }
+  }
+
+   > .active > a,
+  > .active > span {
+    text-decoration: none;
+  }
+
+  li + li a {
+    border-left:none;
+  }
+
+  > .disabled {
+    > span,
+    > span:hover,
+    > span:focus,
+    > a,
+    > a:hover,
+    > a:focus {
+      color: $pagination-link-color;
+      background-color: transparent;
+      border-color: transparent;
+      cursor: not-allowed;
+    }
+  }
+}

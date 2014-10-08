@@ -1,0 +1,32 @@
+.label {
+	border-radius:0;
+}
+
+.label-lg {
+	font-size:100%;
+	padding: .3em .8em .4em;
+}
+
+.label-slate {
+  @include label-variant($label-slate-bg);
+}
+
+.label-steel-blue {
+  @include label-variant($label-steel-blue-bg);
+}
+
+.label-leaf {
+  @include label-variant($label-leaf-bg);
+}
+
+.label-ocean {
+  @include label-variant($label-ocean-bg);
+}
+
+.label-pumpkin {
+  @include label-variant($label-pumpkin-bg);
+}
+
+.label-dark-red {
+  @include label-variant($label-dark-red-bg);
+}
