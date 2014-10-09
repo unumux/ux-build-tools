@@ -1,0 +1,57 @@
+{
+	"build": {
+		"bowerJquery": "bower_components/jquery/dist/*.js",
+		"jqueryDest": "js/jquery/",
+		"bowerBootstrap": "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/*",
+		"bootstrapDest": "Content/scss/bootstrap/",
+		"bowerMixins" : "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/*",
+		"mixinsDest": "Content/scss/bootstrap/mixins/",
+		"brandingSrc": "UI-Framework/scss/branding/*",
+		"brandingDest": "Content/scss/branding/",
+		"sourceSansSrc": "UI-Framework/fonts/sourceSansPro/*",
+		"sourceSansDest": "fonts/sourceSansPro/",
+		"oswaldSrc": "UI-Framework/fonts/oswald/*",
+		"oswaldDest": "fonts/oswald/",
+		"cleanFolders": ["bower_components", "UI-Framework"]
+	},
+
+	"watch": {
+		"scss" : ["Content/scss/*.scss"],
+		"js" : ["Scripts/*.js"],
+		"html": ["*.html"]
+	},
+
+	"debug": {
+		"js" : ["Scripts/script-agile.js"],
+		"jsSource" : [
+		
+    	],
+    	"jsPath" : [
+			"//localhost:35729/livereload.js"
+    	],
+    	"cssPath" : "Content/css/site.css",
+    	"proxy" : "localhost:",
+    	"masterLayout" : "index.html"
+	},
+
+	"dev": {
+		"js" : "js/site.js",
+		"jsSource" :  [
+			"Scripts/jquery/jquery.min.js",
+			"Scripts/script-agile.js"
+		],
+		"jsPath" : "Scripts/site.js",
+		"scss" : "Content/scss/site.scss",
+		"css" : "Content/css/site.css",
+		"modernizr": "Scripts/modernizr/modernizr-dev.js",
+		"html" : "index.html"
+	}, 
+
+	"release": {
+		"js" : "Scripts/site.min.js",
+		"jsPath" : "Scripts/site.min.js",
+		"css" : "Content/css/site.min.css",
+		"cssPath" : "Content/css/site.min.css",
+		"modernizr": "Scripts/modernizr/modernizr-custom.js"
+	}
+}

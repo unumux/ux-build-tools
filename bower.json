@@ -1,0 +1,9 @@
+{
+  "name": "ConnectPOCMVC",
+  "version": "0.0.0",
+  "license": "MIT",
+  "dependencies": {
+  	"bootstrap-sass-official": "3.2.0",
+  	"jquery": "1.11.1"
+  }
+}
