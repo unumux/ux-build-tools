@@ -53,4 +53,5 @@ Sets up the debug environment paths for CSS and JS files, runs browser sync, and
 Compiles the site.css files and the site.js file.  Also changes the css and js path to point to the non-minified files.  (this task needs to be called at the beginning of each iteration right after a deployment has gone through).  In the application version of the Ui Framework it will also use uncss to remove any unused css styles from your css file.  
 
 **grunt release**
+
 Compiles the production build files of site.min.js and site.min.css.  Changes the css and js paths to point to the minified version of the files.  (this needs to be called at the end of an iteration before your project is deployed to the servers).
