@@ -1,14 +1,13 @@
-var _ = require('lodash');
-
+//Framework Version 2.0.0 for MVC applications
 module.exports = function (grunt) {
-  var userConfig = grunt.config.get()
 
   grunt.initConfig({
-    uiFramework: grunt.file.readJSON(__dirname + '/../defaults.json'),
+    variables: grunt.file.readJSON('variables.json'),
+
     sass: {
       dev: {
         files: {
-          '<%= uiFramework.dev.css %>': '<%= uiFramework.dev.scss %>' // Output : Input
+          '<%= variables.dev.css %>': '<%= variables.dev.scss %>' // Output : Input
         }
       },
       release: {
@@ -16,7 +15,7 @@ module.exports = function (grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          '<%= uiFramework.release.css %>': '<%= uiFramework.dev.scss %>' // Output : Input
+          '<%= variables.release.css %>': '<%= variables.dev.scss %>' // Output : Input
         }
       }
     },
@@ -24,13 +23,13 @@ module.exports = function (grunt) {
     concat: {
       debug: {
         nonull: true,
-        src: '<%= uiFramework.debug.jsSource %>',
-        dest: '<%= uiFramework.dev.js %>'
+        src: '<%= variables.debug.jsSource %>',
+        dest: '<%= variables.dev.js %>'
       },
       dev: {
         nonull: true,
-        src: '<%= uiFramework.dev.jsSource %>',
-        dest: '<%= uiFramework.dev.js %>'
+        src: '<%= variables.dev.jsSource %>',
+        dest: '<%= variables.dev.js %>'
       }
     },
 
@@ -41,7 +40,7 @@ module.exports = function (grunt) {
       },
       release: {
         files: {
-          '<%= uiFramework.release.js %>' : '<%= concat.dev.dest %>'
+          '<%= variables.release.js %>' : '<%= concat.dev.dest %>'
         }
       }
     },
@@ -51,8 +50,8 @@ module.exports = function (grunt) {
         files: [
           {
             expand:true, flatten: true,
-            src: '<%= uiFramework.build.bowerBootstrap %>',
-            dest: '<%= uiFramework.build.bootstrapDest %>'
+            src: '<%= variables.build.bowerBootstrap %>',
+            dest: '<%= variables.build.bootstrapDest %>'
           }
         ]
       },
@@ -60,8 +59,8 @@ module.exports = function (grunt) {
         files: [
           {
             expand:true, flatten: true,
-            src: '<%= uiFramework.build.bowerMixins %>',
-            dest: '<%= uiFramework.build.mixinsDest %>'
+            src: '<%= variables.build.bowerMixins %>',
+            dest: '<%= variables.build.mixinsDest %>'
           }
         ]
       },
@@ -69,8 +68,8 @@ module.exports = function (grunt) {
         files: [
           {
             expand:true, flatten:true,
-            src: '<%= uiFramework.build.bowerJquery %>',
-            dest: '<%= uiFramework.build.jqueryDest %>'
+            src: '<%= variables.build.bowerJquery %>',
+            dest: '<%= variables.build.jqueryDest %>'
           }
         ]
       },
@@ -78,8 +77,8 @@ module.exports = function (grunt) {
         files: [
           {
             expand:true, flatten:true,
-            src: '<%= uiFramework.build.brandingSrc %>',
-            dest: '<%= uiFramework.build.brandingDest %>'
+            src: '<%= variables.build.brandingSrc %>',
+            dest: '<%= variables.build.brandingDest %>'
           }
         ]
       },
@@ -87,8 +86,8 @@ module.exports = function (grunt) {
         files: [
           {
              expand:true, flatten:true,
-             src: '<%= uiFramework.build.sourceSansSrc %>',
-             dest: '<%= uiFramework.build.sourceSansDest %>'
+             src: '<%= variables.build.sourceSansSrc %>',
+             dest: '<%= variables.build.sourceSansDest %>'
           }
         ]
       },
@@ -96,20 +95,20 @@ module.exports = function (grunt) {
         files: [
           {
             expand:true, flatten:true,
-            src: '<%= uiFramework.build.oswaldSrc %>',
-            dest: '<%= uiFramework.build.oswaldDest %>'
+            src: '<%= variables.build.oswaldSrc %>',
+            dest: '<%= variables.build.oswaldDest %>'
           }
         ]      
       }
     },
 
     clean: [
-      "<%= uiFramework.build.cleanFolders %>"
+      "<%= variables.build.cleanFolders %>"
     ],
 
     jshint: {
       files: {
-        src: '<%= uiFramework.debug.js %>'
+        src: '<%= variables.debug.js %>'
       }
     },
 
@@ -128,7 +127,7 @@ module.exports = function (grunt) {
           ]
         },
         files: {
-          '<%= uiFramework.dev.css %>': '<%= uiFramework.dev.html %>'
+          '<%= variables.dev.css %>': '<%= variables.dev.html %>'
         }
       },
 
@@ -147,21 +146,21 @@ module.exports = function (grunt) {
           report: 'min'
         },
         files: {
-          '<%= uiFramework.release.css %>': '<%= uiFramework.dev.html %>'
+          '<%= variables.release.css %>': '<%= variables.dev.html %>'
         }
       }
     },
 
     captain_hook: {
       debug: {
-        jsFiles: '<%= uiFramework.debug.jsPath %>',
-        cssFiles: '<%= uiFramework.debug.cssPath %>',
-        targetHtml: '<%= uiFramework.debug.masterLayout %>'
+        jsFiles: '<%= variables.debug.jsPath %>',
+        cssFiles: '<%= variables.debug.cssPath %>',
+        targetHtml: '<%= variables.debug.masterLayout %>'
       },
       release: {
-        jsFiles: '<%= uiFramework.release.jsPath %>',
-        cssFiles: '<%= uiFramework.release.cssPath %>',
-        targetHtml: '<%= uiFramework.debug.masterLayout %>'
+        jsFiles: '<%= variables.release.jsPath %>',
+        cssFiles: '<%= variables.release.cssPath %>',
+        targetHtml: '<%= variables.debug.masterLayout %>'
       }
     },
 
@@ -170,18 +169,18 @@ module.exports = function (grunt) {
         livereload: true
       },
       css: {
-        files: '<%= uiFramework.watch.scss %>',
+        files: '<%= variables.watch.scss %>',
         tasks: ['sass:dev']
       },
       js: {
-        files: '<%= uiFramework.watch.js %>',
+        files: '<%= variables.watch.js %>',
         tasks: ['modernizr'],
         options: {
           livereload: true
         }
       },
       html: {
-        files: ['<%= uiFramework.watch.html %>'],
+        files: ['<%= variables.watch.html %>'],
         options: {
           livereload: true
         }
@@ -190,18 +189,18 @@ module.exports = function (grunt) {
 
     browserSync: {
       bsfiles: {
-        src: '<%= uiFramework.debug.cssPath %>'
+        src: '<%= variables.debug.cssPath %>'
       },
       options: {
-        proxy: '<%= uiFramework.debug.proxy %>',
+        proxy: '<%= variables.debug.proxy %>',
         watchTask: true
       }
     },
 
     modernizr: {
       dist: {
-        "devFile": '<%= uiFramework.dev.modernizr %>',
-        "outputFile": "<%= uiFramework.release.modernizr %>",
+        "devFile": '<%= variables.dev.modernizr %>',
+        "outputFile": "<%= variables.release.modernizr %>",
         "parseFiles": true
       }
     }
@@ -226,8 +225,6 @@ module.exports = function (grunt) {
         });
   });
 
-  grunt.config.merge(userConfig);
-
   // Pull in the plugins
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -240,7 +237,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-browser-sync');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-
 
   grunt.registerTask("default", function () {
     grunt.log.writeln("\r\n - \x1b[97mGRUNT COMMANDS\x1b[39;49m -------------------------------------------------------------\r\n");
@@ -268,7 +264,4 @@ module.exports = function (grunt) {
   grunt.registerTask('debug', ['captain_hook:debug', 'browserSync', 'watch']);
   grunt.registerTask('dev', ['sass:dev', 'uncss:dev', 'captain_hook:dev']);
   grunt.registerTask('release', ['concat:dev', "uglify", 'sass:release', 'uncss:release', 'captain_hook:release']);
-
-
 };
-
