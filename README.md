@@ -3,7 +3,7 @@ UI-Framework
 
 ###Dependencies to Install###
 - Git
-- Node.js & NPM
+- Node Package Manager
 - Grunt
 - Bower
 
@@ -13,7 +13,7 @@ Download the Git installer from here: [Git download](http://git-scm.com/download
 
 With the command line still open run this script: git config --global url."https://".insteadOf git://  The system will not give feedback if it ran successfully, if you receive no error messages it was completed successfully. 
 
-**NODE.js & NPM (Node Package Manager)**
+**NODE.js & NPM (Node Package Manager**
 
 This depends on Git being installed on your box.  Go to http://nodejs.org/ and download the .msi file from Nodejs.  Run this file.  It will setup both NPM and Node on your machine.  On the ‘Custom Setup’ Screen, expand the ‘Add to PATH’ hard drive icon and select ‘Entire feature will be installed on the local hard drive’.  The description on the right will change from 0 of 2 sub features selected to 2 of 2 selected.  Repeat these steps for ‘npm package manager’, and all other hard drive icons.  Enter the command of npm –version into the command line.  A returning value means that Node and Node Package Manager were installed properly. 
 
@@ -21,38 +21,11 @@ This depends on Git being installed on your box.  Go to http://nodejs.org/ and d
 
 **Grunt**
 
-Open up command line and type in the commands:
-
-```
-npm install –g grunt-cli
-grunt –version
-```
-
-A returning value means that Grunt was installed properly.
+Open up command line and type in the command of ‘npm install –g grunt’ and let the process run until complete.  After that process is complete run ‘npm install –g grunt-cli’.  Enter the command of grunt –version into the command line.  A returning value means that Grunt was installed properly.
 
 **Bower**
 
-Open up command line and type in the command of 'npm install -g bower' and let the process run until complete. Upon successful completion enter 'bower --version' to confirm that it was installed properly. You should receive a version # in the format of x.x.x back as a response. 
-
-**UI Framework (this)**
-
-Open up command line and type:
-
-```
-npm i -D unumux/ui-framework 
-```
-
-This will install the UI Framework files and all of the dependencies required to use it. To begin using it on a new project (if you didn't use the Yeoman generator), create a Gruntfile.js in your project root and put the following in it:
-
-```
-module.exports = function(grunt) {
-
-  grunt.loadNpmTasks('uiFramework');
-
-}
-```
-
-This will set up the framework with default paths. To learn more about configuring options, read more in the wiki.
+Open up command line and type in the command of 'npm install -g bower' and let the process run until complete. Upon successful completion enter 'bower --version' to confimr that it was installed properly. You should receive a version # in the format of x.x.x back as a response. 
 
 ##Grunt File Tasks##
 

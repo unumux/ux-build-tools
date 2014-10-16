@@ -16,7 +16,7 @@
 	},
 
 	"watch": {
-		"scss" : ["scss/*.scss"],
+		"scss" : ["Content/scss/*.scss"],
 		"js" : ["Scripts/*.js"],
 		"html": ["*.html"]
 	},
@@ -29,14 +29,22 @@
     	"jsPath" : [
 			"//localhost:35729/livereload.js"
     	],
-    	"cssPath" : "css/site.css",
+    	"cssPath" : "Content/css/site.css",
     	"proxy" : "localhost:",
     	"masterLayout" : "index.html"
 	},
 
 	"dev": {
-		"scss" : "scss/site.scss",
-		"css" : "css/site.css"
+		"js" : "js/site.js",
+		"jsSource" :  [
+			"Scripts/jquery/jquery.min.js",
+			"Scripts/script-agile.js"
+		],
+		"jsPath" : "Scripts/site.js",
+		"scss" : "Content/scss/site.scss",
+		"css" : "Content/css/site.css",
+		"modernizr": "Scripts/modernizr/modernizr-dev.js",
+		"html" : "index.html"
 	}, 
 
 	"release": {
