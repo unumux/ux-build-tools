@@ -61,7 +61,7 @@ Shows a list of all of the commands including the advanced commands.
 
 Watches your scss, markup, and javascript files for changes. When a change is detected three actions can occur depending on the file type saved.
 - Scss saves compile the css changes and reload your browser page
-- JS saves check for Modernizr changes and create a new version if needed and reload the page
+- Looks for new scss partials and adds them as imports to the main site.scss file
 - HTML/Markup changes causes the browser page to refresh
 
 **grunt debug**
@@ -77,3 +77,10 @@ Compiles the site.css files and the site.js file.  Also changes the css and js p
 Compiles the production build files of site.min.js and site.min.css.  Changes the css and js paths to point to the minified version of the files.  (this needs to be called at the end of an iteration before your project is deployed to the servers). This also runs autoprefixer and uncss to preen your css and to add browser prefixes to css properties.  
 
 More in-depth information about the UI-Framework and its commands can be found on the [wiki page](https://github.com/unumux/UI-Framework/wiki). 
+
+*Javscript Note*
+At this time javascript files are not automatically being added.  Only jquery and modernizr are loaded in by default. In order to include site specific javascript files or libraries please add the path to the defaults.json file. It is located in /node_modules/uiFramework/tasks/defaults.json. 
+
+You will need to add the path to "debug" > "jsPath" and "dev" > "jsSource". 
+
+Automatic adding of Javascript files will be added before the 3.0.0 update
