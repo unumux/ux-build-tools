@@ -3,12 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "dependencies": {
-<<<<<<< HEAD
   	"jquery": "1.11.1",
   	"colonial-branding" : "1.0.0"
-=======
-  	"bootstrap-sass-official": "3.2.0",
-  	"jquery": "1.11.1"
->>>>>>> origin/master
   }
 }
