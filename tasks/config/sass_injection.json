@@ -1,0 +1,6 @@
+{
+	"your_target": {
+		"target": "<%= uiFramework.dev.scss %>",
+		"src": ["<%= uiFramework.watch.scss %>"]
+	}
+}

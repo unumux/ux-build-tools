@@ -1,5 +1,6 @@
 //Framework Version 2.0.0 for MVC applications
 module.exports = function (grunt) {
+<<<<<<< HEAD:Gruntfile.js
 
   grunt.initConfig({
     variables: grunt.file.readJSON('variables.json'),
@@ -18,8 +19,19 @@ module.exports = function (grunt) {
           '<%= variables.release.css %>': '<%= variables.dev.scss %>' // Output : Input
         }
       }
-    },
+=======
+  // save users grunt config so we can merge it in later
+  var userConfig = grunt.config.get();
 
+  var options = {
+    config : {
+        src: __dirname + "/config/*.json"
+>>>>>>> develop:tasks/uiFramework.js
+    },
+    uiFramework: grunt.file.readJSON(__dirname + '/defaults.json')
+  };
+
+<<<<<<< HEAD:Gruntfile.js
     concat: {
       debug: {
         nonull: true,
@@ -225,9 +237,16 @@ module.exports = function (grunt) {
         });
   });
 
+=======
+  var configs = require('load-grunt-configs')(grunt, options);
+  grunt.initConfig(configs);
+
+  // merge in user's grunt config
+  grunt.config.merge(userConfig);
+
+>>>>>>> develop:tasks/uiFramework.js
   // Pull in the plugins
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-modernizr');
@@ -235,33 +254,26 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-sass-injection');
+  grunt.loadNpmTasks('grunt-autoprefixer');
 
   grunt.registerTask("default", function () {
-    grunt.log.writeln("\r\n - \x1b[97mGRUNT COMMANDS\x1b[39;49m -------------------------------------------------------------\r\n");
-    grunt.log.writeln("   grunt \x1b[93mwatch\x1b[39;49m - Watch scss");
-    grunt.log.writeln("   grunt \x1b[93mbuild\x1b[39;49m - Build the initial files and installs Bower/Branding components");
-    grunt.log.writeln("   grunt \x1b[93mdebug\x1b[39;49m - Build for the debug environment");
-    grunt.log.writeln("   grunt \x1b[93mdev\x1b[39;49m - Build the dev files");
-    grunt.log.writeln("   grunt \x1b[93mrelease\x1b[39;49m - Build the release files");
-    grunt.log.writeln("\r\n - \x1b[97mGRUNT COMMANDS (ADVANCED)\x1b[39;49m --------------------------------------------------\r\n");
-    grunt.log.writeln("   grunt \x1b[93mbower\x1b[39;49m - Install bower dependencies");
-    grunt.log.writeln("   grunt \x1b[93mgit\x1b[39;49m - Clone UI-Framework from github");
-    grunt.log.writeln("   grunt \x1b[93msass:dev\x1b[39;49m - Compile scss files");
-    grunt.log.writeln("   grunt \x1b[93msass:release\x1b[39;49m - Minify  compiled CSS file");
-    grunt.log.writeln("   grunt \x1b[93mcopy\x1b[39;49m - Copy files from Bower Components to MVC file structure");
-    grunt.log.writeln("   grunt \x1b[93mclean\x1b[39;49m - Delete the Bower components folder");
-    grunt.log.writeln("   grunt \x1b[93mjshint\x1b[39;49m - Run jslint for javascript errors");
-    grunt.log.writeln("   grunt \x1b[93muncss:dev\x1b[39;49m - Remove unused css styles");
-    grunt.log.writeln("   grunt \x1b[93muncss:release\x1b[39;49m - Remove unused css styles");
-    grunt.log.writeln("   grunt \x1b[93mcaptain_hook:debug\x1b[39;49m - link page to debug version of the files");
-    grunt.log.writeln("   grunt \x1b[93mcaptain_hook:dev\x1b[39;49m - link page to dev version of javascript and CSS");
-    grunt.log.writeln("   grunt \x1b[93mcaptain_hook:release\x1b[39;49m - link page to release version of javascript and CSS");
+    require('./modules/help.js')(grunt)
   });
 
+<<<<<<< HEAD:Gruntfile.js
   grunt.registerTask('build', ['bower', 'git', 'copy', 'clean', 'sass:dev', 'captain_hook:debug']);
   grunt.registerTask('debug', ['captain_hook:debug', 'browserSync', 'watch']);
   grunt.registerTask('dev', ['sass:dev', 'uncss:dev', 'captain_hook:dev']);
   grunt.registerTask('release', ['concat:dev', "uglify", 'sass:release', 'uncss:release', 'captain_hook:release']);
+=======
+  //grunt.registerTask('build', ['wiredep', 'sass_injection', 'sass:dev', 'captain_hook:debug']);
+  grunt.registerTask('debug', ['wiredep', 'sass_injection', 'sass:dev', 'captain_hook:debug', 'browserSync', 'watch']);
+  grunt.registerTask('dev', ['sass:dev', 'autoprefixer', 'uncss:dev']);
+  grunt.registerTask('release', ['concat:release', 'uglify', 'sass:release', 'autoprefixer', 'uncss:release', 'captain_hook:release']);
+
+
+>>>>>>> develop:tasks/uiFramework.js
 };

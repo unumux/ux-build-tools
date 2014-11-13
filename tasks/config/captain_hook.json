@@ -1,0 +1,12 @@
+{
+  "debug": {
+    "jsFiles": "<%= uiFramework.debug.jsPath %>",
+    "cssFiles": "<%= uiFramework.debug.cssPath %>",
+    "targetHtml": "<%= uiFramework.debug.masterLayout %>"
+  },
+  "release": {
+    "jsFiles": "<%= uiFramework.release.jsPath %>",
+    "cssFiles": "<%= uiFramework.release.cssPath %>",
+    "targetHtml": "<%= uiFramework.debug.masterLayout %>"
+  }
+}

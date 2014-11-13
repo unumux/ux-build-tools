@@ -1,0 +1,7 @@
+{
+  "dist": {
+    "devFile": "<%= uiFramework.dev.modernizr %>",
+    "outputFile": "<%= uiFramework.release.modernizr %>",
+    "parseFiles": true
+  }
+}

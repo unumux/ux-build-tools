@@ -1,0 +1,10 @@
+{
+  "sass": {
+  	"options": {
+  		"exclude":  "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss"
+  	},
+    "src": [
+      "scss/site.scss"
+    ]
+  }
+}

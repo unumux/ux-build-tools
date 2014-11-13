@@ -1,0 +1,11 @@
+{
+  "bsfiles": {
+    "src": "<%= uiFramework.debug.cssPath %>"
+  },
+  "options": {
+    "server": {
+    	"baseDir": "./"
+    },
+    "watchTask": true
+  }
+}

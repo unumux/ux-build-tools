@@ -42,5 +42,11 @@ Temporary Items
 .apdisk
 
 
+<<<<<<< HEAD
 /bower_components
 /node_modules
+=======
+bower_components/
+node_modules/
+scss/
+>>>>>>> develop

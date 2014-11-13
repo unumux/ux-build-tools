@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "options": {
+      "ignore": [
+        "/js.*/"
+      ]
+    },
+    "files": {
+      "<%= uiFramework.dev.css %>": "<%= uiFramework.watch.html %>"
+    }
+  },
+  "release": {
+    "options": {
+      "ignore": [
+         "/js.*/"
+      ],
+      "report": "min"
+    },
+    "files": {
+      "<%= uiFramework.release.css %>": "<%= uiFramework.watch.html %>"
+    }
+  }
+}

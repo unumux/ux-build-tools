@@ -1,0 +1,11 @@
+{
+  "options": {
+    "report": "gzip",
+    "mangle": false
+  },
+  "release": {
+    "files": {
+      "<%= uiFramework.release.js %>": "<%= concat.dev.dest %>"
+    }
+  }
+}

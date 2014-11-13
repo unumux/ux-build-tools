@@ -1,0 +1,22 @@
+{
+  "options": {
+    "livereload": true,
+    "spawn": false
+  },
+  "css": {
+    "files": "<%= uiFramework.watch.scss %>",
+    "tasks": [
+     "sass_injection",
+     "sass:dev",
+     "autoprefixer"
+    ]
+  },
+  "html": {
+    "files": [
+      "<%= uiFramework.watch.html %>"
+    ],
+    "options": {
+      "livereload": true
+    }
+  }
+}

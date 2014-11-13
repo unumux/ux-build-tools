@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "files": {
+      "<%= uiFramework.dev.css %>": "<%= uiFramework.dev.scss %>"
+    }
+  },
+  "release": {
+    "options": {
+      "outputStyle": "compressed"
+    },
+    "files": {
+      "<%= uiFramework.release.css %>": "<%= uiFramework.dev.scss %>"
+    }
+  }
+}
