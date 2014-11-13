@@ -25,9 +25,9 @@ Open up command line and type in the command of ‘npm install –g grunt’ and
 
 **Bower**
 
-<<<<<<< HEAD
+
 Open up command line and type in the command of 'npm install -g bower' and let the process run until complete. Upon successful completion enter 'bower --version' to confimr that it was installed properly. You should receive a version # in the format of x.x.x back as a response. 
-=======
+
 Open up command line and type in the command of 'npm install -g bower' and let the process run until complete. Upon successful completion enter 'bower --version' to confirm that it was installed properly. You should receive a version # in the format of x.x.x back as a response. 
 
 **UI Framework (this)**
@@ -50,7 +50,6 @@ module.exports = function(grunt) {
 ```
 
 This will set up the framework with default paths. To learn more about configuring options, read more in the wiki.
->>>>>>> develop
 
 ##Grunt File Tasks##
 
