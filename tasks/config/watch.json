@@ -18,5 +18,16 @@
     "options": {
       "livereload": true
     }
+  },
+  "js": {
+    "files": [
+     "<%= uiFramework.watch.js %>"
+    ],
+    "tasks": [
+      "captain_hook:debug"
+    ],
+    "options": {
+      "livereload": true
+    }
   }
 }

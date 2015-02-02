@@ -10,7 +10,8 @@
       "scss/*.scss"
     ],
     "js": [
-      "js/*.js"
+      "js/**/*.js",
+      "!js/modernizr/*.js"
     ],
     "html": [
       "*.html"
@@ -22,7 +23,10 @@
     ],
     "jsPath": [
       "//localhost:35729/livereload.js",
-      "bower_components/jquery/dist/jquery.min.js"
+      "bower_components/jquery/dist/jquery.min.js",
+      "js/**/*.js",
+      "!js/site.js",
+      "!js/site.min.js"
     ],
     "cssPath": "css/site.css",
     "masterLayout": "index.html"
@@ -31,7 +35,10 @@
     "scss": "scss/site.scss",
     "css": "css/site.css",
     "jsSource": [
-      "bower_components/jquery/dist/jquery.min.js"
+      "bower_components/jquery/dist/jquery.min.js",
+      "js/**/*.js",
+      "!js/site.js",
+      "!js/site.min.js"
     ]
   },
   "release": {
