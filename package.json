@@ -1,0 +1,26 @@
+{
+  "name": "@chuckhendo/ui-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.7.0",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.2.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-jshint": "^1.10.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^1.3.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "main-bower-files": "^2.8.0",
+    "ui-framework": "git+https://7c42ce73f8853826cd1e3a5d47002c7ff693164f:x-oauth-basic@github.com/unumux/ui-framework.git"
+  }
+}
