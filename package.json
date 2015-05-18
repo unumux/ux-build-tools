@@ -1,6 +1,6 @@
 {
-  "name": "@chuckhendo/ui-framework",
-  "version": "1.0.0",
+  "name": "@unumux/ui-framework",
+  "version": "1.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,6 @@
     "gulp-sass": "^1.3.3",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
-    "main-bower-files": "^2.8.0",
-    "ui-framework": "git+https://7c42ce73f8853826cd1e3a5d47002c7ff693164f:x-oauth-basic@github.com/unumux/ui-framework.git"
+    "main-bower-files": "^2.8.0"
   }
 }
