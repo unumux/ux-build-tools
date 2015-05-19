@@ -1,19 +1,32 @@
     var gulp = require('gulp');
     var $ = require('gulp-load-plugins')();
+    var tap = require('gulp-tap')
     var browserSync = require('browser-sync').create();
     var reload = browserSync.reload;
     var mainBowerFiles = require('main-bower-files');
 
+    var ignorePaths = ['!node_modules/**/*', '!bower_components/**/*', '!gulpfile.js'];
+
 
     var paths = {
         scss: {
-            src: ['Styles/**/*.scss'],
-            dest: 'Styles'
+            src: ['**/*.scss'].concat(ignorePaths),
+            dest: './'
         },
-        watch: ['Views/**/*.{html,cshtml}', 'Scripts/**/*.js'],
+        watch: ['**/*.{html,cshtml}', '**/*.js'].concat(ignorePaths),
     }
 
-    var ignorePaths = ['!node_modules/**/*', '!bower_components/**/*', '!gulpfile.js'];
+    var glob = require('glob');
+
+
+
+    gulp.task('test', function() {
+        gulp.src(paths.scss.src, {read: false, ignore: ['*']})
+            .pipe(tap(function(file) {
+                console.log(file)
+            }))
+    })
+
 
     function errorHandler(e) {
         $.notify().write(e)
@@ -23,7 +36,7 @@
     // everything related to scss and css minification
     gulp.task('styles', function() {
         if(!paths.scss) return; // if the scss paths aren't set, skip this step
-        return gulp.src(paths.scss.src)
+        return gulp.src(paths.scss.src, {ignore: ignorePaths})
             .pipe($.sourcemaps.init()) // start sourcemap processing
             .pipe($.sass()) // compile the sass
             .on('error', errorHandler) // if there are errors during sass compile, call errorHandler
