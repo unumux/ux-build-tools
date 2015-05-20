@@ -2,12 +2,14 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
-var mainBowerFiles = require('main-bower-files');
+
 var path = require('path');
+var fs = require('fs');
+
 
 var config = require(path.join(process.cwd(), 'ux.json'))
 
-var paths = config.paths;
+var paths = config;
 
 function errorHandler(e) {
     $.notify().write(e)
@@ -19,7 +21,9 @@ gulp.task('styles', function() {
     if(!paths.scss) return; // if the scss paths aren't set, skip this step
     return gulp.src(paths.scss.src)
         .pipe($.sourcemaps.init()) // start sourcemap processing
-        .pipe($.sass()) // compile the sass
+        .pipe($.sass({
+            includePaths: ['./bower_components']
+        })) // compile the sass
         .on('error', errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe($.autoprefixer())
         .pipe($.sourcemaps.write()) // write sourcemaps to the css file
@@ -32,23 +36,17 @@ gulp.task('styles', function() {
 
 
 gulp.task('js', function() {
-    if(!paths.js) return;
-    return gulp.src(paths.js)
+    if(!paths.js && config.compileJs) return;
+    return gulp.src([paths.js.src, '!**/*.min.js'])
         .pipe(reload({stream:true}))
         .pipe($.uglify())
         .pipe($.rename({suffix: '.min'}))
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest(paths.js.dest))
 });
-
-gulp.task('bower', function () {
-    return gulp.src(mainBowerFiles())
-        .pipe(gulp.dest('lib'))
-})
-
 
 gulp.task('browsersync', function() {
     return browserSync.init({
-        server: false
+        server: config.server
     })
 });
 
@@ -60,7 +58,10 @@ gulp.task('watch', function() {
     }
 
     if(paths.js) {
-        gulp.watch(paths.js, ['js']);
+        gulp.watch([paths.js.src, '!**/*.min.js'], ['js']);
     }
-    gulp.watch(paths.watch, reload);
+
+    if(paths.watch) {
+        gulp.watch(paths.watch, reload);
+    }
 });
