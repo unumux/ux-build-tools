@@ -22,15 +22,14 @@ gulp.task('styles', function() {
     return gulp.src(paths.scss.src)
         .pipe($.sourcemaps.init()) // start sourcemap processing
         .pipe($.sass({
-            includePaths: ['./bower_components']
+            includePaths: ['./bower_components'],
+            outputStyle: 'compact'
         })) // compile the sass
         .on('error', errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe($.autoprefixer())
-        .pipe($.sourcemaps.write()) // write sourcemaps to the css file
-        .pipe(gulp.dest(paths.scss.dest)) // output unminified css to the output dir
-        .pipe(reload({stream:true})) // reload with unminified css using browsersync
-        .pipe($.cssmin()) // minify css
-        .pipe($.rename({suffix: '.min'})) // rename output stream to add .min suffex
+        .pipe($.sourcemaps.write('./')) // write sourcemaps to a map file
+        .pipe(gulp.dest(paths.scss.dest)) // output minified css to the output dir
+        .pipe(reload({stream:true})) // reload with minified css using browsersync
         .pipe(gulp.dest(paths.scss.dest))
 });
 
