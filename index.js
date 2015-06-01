@@ -57,7 +57,7 @@ gulp.task('watch', function() {
     }
 
     if(paths.js) {
-        gulp.watch([paths.js.src, '!**/*.min.js'], ['js']);
+        gulp.watch([paths.js.src, '!*.min.js'], ['js']);
     }
 
     if(paths.watch) {
