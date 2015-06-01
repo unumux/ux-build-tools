@@ -35,7 +35,7 @@ gulp.task('styles', function() {
 
 
 gulp.task('js', function() {
-    if(!paths.js && config.compileJs) return;
+    if(!paths.js || !config.compileJs) return;
     return gulp.src([paths.js.src, '!**/*.min.js'])
         .pipe(reload({stream:true}))
         .pipe($.uglify())
