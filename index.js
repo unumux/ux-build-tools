@@ -2,10 +2,14 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
+var sass = require('node-sass');
 
 var path = require('path');
 var fs = require('fs');
 
+var bower = require('bower');
+
+var bowerPackageFolder = bower.config.directory;
 
 var config = require(path.join(process.cwd(), 'ux.json'))
 
@@ -22,15 +26,14 @@ gulp.task('styles', function() {
     return gulp.src(paths.scss.src)
         .pipe($.sourcemaps.init()) // start sourcemap processing
         .pipe($.sass({
-            includePaths: ['./bower_components'],
-            outputStyle: 'compact'
+            includePaths: [bowerPackageFolder],
+            outputStyle: 'compressed'
         })) // compile the sass
         .on('error', errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe($.autoprefixer())
-        .pipe($.sourcemaps.write('./')) // write sourcemaps to a map file
+        .pipe($.sourcemaps.write()) // start sourcemap processing
         .pipe(gulp.dest(paths.scss.dest)) // output minified css to the output dir
         .pipe(reload({stream:true})) // reload with minified css using browsersync
-        .pipe(gulp.dest(paths.scss.dest))
 });
 
 
