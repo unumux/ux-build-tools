@@ -1,5 +1,17 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var _ = require('lodash');
+
+var glob = require('glob');
+
+var browserify = require('browserify');
+var watchify = require('watchify');
+var debowerify = require('debowerify');
+var babelify = require('babelify');
+
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 var sass = require('node-sass');
@@ -26,24 +38,15 @@ gulp.task('styles', function() {
     return gulp.src(paths.scss.src)
         .pipe($.sourcemaps.init()) // start sourcemap processing
         .pipe($.sass({
-            includePaths: [bowerPackageFolder],
-            outputStyle: 'compressed'
+            includePaths: [bowerPackageFolder]
         })) // compile the sass
         .on('error', errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe($.autoprefixer())
-        .pipe($.sourcemaps.write()) // start sourcemap processing
+        .pipe($.minifyCss({compatibility: 'ie8'}))
+        .pipe($.rename({extname: ".min.css"}))
+        .pipe($.sourcemaps.write('./', { sourceRoot: './' })) // start sourcemap processing
         .pipe(gulp.dest(paths.scss.dest)) // output minified css to the output dir
         .pipe(reload({stream:true})) // reload with minified css using browsersync
-});
-
-
-gulp.task('js', function() {
-    if(!paths.js || !config.compileJs) return;
-    return gulp.src([paths.js.src, '!**/*.min.js'])
-        .pipe(reload({stream:true}))
-        .pipe($.uglify())
-        .pipe($.rename({suffix: '.min'}))
-        .pipe(gulp.dest(paths.js.dest))
 });
 
 gulp.task('browsersync', function() {
@@ -59,11 +62,48 @@ gulp.task('watch', function() {
         gulp.watch(paths.scss.src, ['styles']);
     }
 
-    if(paths.js) {
-        gulp.watch([paths.js.src, '!*.min.js'], ['js']);
-    }
-
     if(paths.watch) {
         gulp.watch(paths.watch, reload);
     }
+});
+
+
+
+gulp.task('js', function() {
+    if(!paths.js || !paths.js.main || !config.compileJs) return; // if JS paths aren't set or if JS compiling is disabled, skip
+
+    var customOpts = {
+        entries: paths.js.main,
+        debug: true
+    };
+
+    var baseName = path.basename(paths.js.main, path.extname(paths.js.main));
+    var outputFilename = baseName + ".min.js";
+
+    var opts = _.assign({}, watchify.args, customOpts);
+    var b = watchify(browserify(opts));
+
+    b.transform(babelify);
+    b.transform(debowerify);
+
+    b.on('update', bundle);
+    b.on('log', $.util.log); // output build logs to terminal
+
+    return bundle();
+
+
+    function bundle() {
+
+        return b.bundle()
+            .pipe(source(outputFilename))
+            .pipe(buffer())
+            .pipe($.sourcemaps.init({loadMaps: true}))
+            // Add transformation tasks to the pipeline here.
+            .pipe($.uglify())
+            .on('error', $.util.log)
+            .pipe($.sourcemaps.write('./', {sourceRoot: './', includeContent: true}))
+            .pipe(gulp.dest(paths.js.dest))
+            .pipe(reload({stream:true}))
+    }
+
 });
