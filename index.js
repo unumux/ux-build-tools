@@ -12,6 +12,8 @@ var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 
+var combiner = require('stream-combiner2');
+
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 var sass = require('node-sass');
@@ -94,16 +96,20 @@ gulp.task('js', function() {
 
     function bundle() {
 
-        return b.bundle()
-            .pipe(source(outputFilename))
-            .pipe(buffer())
-            .pipe($.sourcemaps.init({loadMaps: true}))
-            // Add transformation tasks to the pipeline here.
-            .pipe($.uglify())
-            .on('error', $.util.log)
-            .pipe($.sourcemaps.write('./', {sourceRoot: './', includeContent: true}))
-            .pipe(gulp.dest(paths.js.dest))
-            .pipe(reload({stream:true}))
+        var combined = combiner([
+            b.bundle(),
+            source(outputFilename),
+            buffer(),
+            $.sourcemaps.init({loadMaps: true}),
+            $.uglify(),
+            $.sourcemaps.write('./', {sourceRoot: './', includeContent: true}),
+            gulp.dest(paths.js.dest),
+            reload({stream:true})
+        ]);
+
+        combined.on('error', errorHandler);
+
+        return combined;
     }
 
 });
