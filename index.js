@@ -44,8 +44,12 @@ gulp.task('styles', function() {
         })) // compile the sass
         .on('error', errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe($.autoprefixer())
-        .pipe($.minifyCss({compatibility: 'ie8'}))
-        .pipe($.rename({extname: ".min.css"}))
+        .pipe($.if(config.scss.base64 !== false, $.base64({
+            maxImageSize: 10*1024,
+            extensions: ['svg', 'png', 'jpg']
+        })))
+        .pipe($.if(config.scss.minify !== false, $.minifyCss({compatibility: 'ie8'})))
+        .pipe($.if(config.scss.minify !== false, $.rename({extname: ".min.css"})))
         .pipe($.sourcemaps.write('./', { sourceRoot: './' })) // start sourcemap processing
         .pipe(gulp.dest(paths.scss.dest)) // output minified css to the output dir
         .pipe(reload({stream:true})) // reload with minified css using browsersync
