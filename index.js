@@ -52,6 +52,7 @@ gulp.task('styles', function() {
         .pipe($.if(config.scss.minify !== false, $.rename({extname: ".min.css"})))
         .pipe($.sourcemaps.write('./', { sourceRoot: './' })) // start sourcemap processing
         .pipe(gulp.dest(paths.scss.dest)) // output minified css to the output dir
+        .pipe($.ignore('**/*.map'))  // remove map files to prevent reload issues
         .pipe(reload({stream:true})) // reload with minified css using browsersync
 });
 
