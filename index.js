@@ -8,6 +8,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var debowerify = require('debowerify');
 var babelify = require('babelify');
+var deamdify = require('deamdify');
 
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -25,9 +26,18 @@ var bower = require('bower');
 
 var bowerPackageFolder = bower.config.directory;
 
-var config = require(path.join(process.cwd(), 'ux.json'))
+var config = require(path.join(process.cwd(), 'ux.json'));
+
+var home = getUserHome();
+var globalConfigPath = path.join(home, '.ux-global.json');
+
+if(fs.existsSync(globalConfigPath)) {
+        var globalConfig = require(globalConfigPath);
+}
 
 var paths = config;
+
+var loginMiddleware = require('./utils/login-middleware.js');
 
 function errorHandler(e) {
     $.notify().write(e)
@@ -56,10 +66,21 @@ gulp.task('styles', function() {
         .pipe(reload({stream:true})) // reload with minified css using browsersync
 });
 
+var browserSyncConfig = {}
+
+if(config.server) {
+    browserSyncConfig.server = "./";
+} else if(config.proxy) {
+    browserSyncConfig.proxy = {
+        target: config.proxy,
+        middleware: loginMiddleware(globalConfig.login.username, globalConfig.login.password)
+    }
+}
+
 gulp.task('browsersync', function() {
-    return browserSync.init({
-        server: config.server
-    })
+    if(browserSyncConfig) {
+        return browserSync.init(browserSyncConfig);
+    }
 });
 
 gulp.task('default', ['styles', 'js', 'watch', 'browsersync']);
@@ -92,6 +113,7 @@ gulp.task('js', function() {
 
     b.transform(babelify);
     b.transform(debowerify);
+    b.transform(deamdify);
 
     b.on('update', bundle);
     b.on('log', $.util.log); // output build logs to terminal
@@ -118,3 +140,7 @@ gulp.task('js', function() {
     }
 
 });
+
+function getUserHome() {
+  return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+}
