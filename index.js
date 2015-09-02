@@ -67,10 +67,13 @@ gulp.task('styles', function() {
 });
 
 var browserSyncConfig = {}
-
 if(config.server) {
     browserSyncConfig.server = "./";
 } else if(config.proxy) {
+    if(!globalConfig || !globalConfig.login || !globalConfig.login.username || !globalConfig.login.password) {
+        console.log('You must setup your memberservices credentials. Please run ux --login (this needs to only be done once)');
+        process.exit(1);
+    }
     browserSyncConfig.proxy = {
         target: config.proxy,
         middleware: loginMiddleware(globalConfig.login.username, globalConfig.login.password)
