@@ -9,6 +9,7 @@ var watchify = require('watchify');
 var debowerify = require('debowerify');
 var babelify = require('babelify');
 var deamdify = require('deamdify');
+var minifyify = require('minifyify');
 
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -118,6 +119,8 @@ gulp.task('js', function() {
     b.transform(debowerify);
     b.transform(deamdify);
 
+    b.plugin(minifyify, {map: outputFilename + '.map', output: path.join(paths.js.dest, outputFilename + '.map')});
+
     b.on('update', bundle);
     b.on('log', $.util.log); // output build logs to terminal
 
@@ -130,9 +133,6 @@ gulp.task('js', function() {
             b.bundle(),
             source(outputFilename),
             buffer(),
-            $.sourcemaps.init({loadMaps: true}),
-            $.uglify(),
-            $.sourcemaps.write('./', {sourceRoot: './', includeContent: true}),
             gulp.dest(paths.js.dest),
             reload({stream:true})
         ]);
