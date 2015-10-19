@@ -122,24 +122,18 @@ gulp.task('js', function() {
     b.plugin(minifyify, {map: outputFilename + '.map', output: path.join(paths.js.dest, outputFilename + '.map')});
 
     b.on('update', bundle);
-    b.on('log', $.util.log); // output build logs to terminal
+    // b.on('log', $.util.log); // output build logs to terminal
 
     return bundle();
 
 
     function bundle() {
-
-        var combined = combiner([
-            b.bundle(),
-            source(outputFilename),
-            buffer(),
-            gulp.dest(paths.js.dest),
-            reload({stream:true})
-        ]);
-
-        combined.on('error', errorHandler);
-
-        return combined;
+        return b.bundle()
+          .on('error', errorHandler)
+          .pipe(source(outputFilename))
+          .pipe(buffer())
+          .pipe(gulp.dest(paths.js.dest))
+          .pipe(reload({stream: true}));
     }
 
 });
