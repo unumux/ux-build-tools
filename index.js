@@ -2,23 +2,17 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var _ = require('lodash');
 
-var glob = require('glob');
-
 var browserify = require('browserify');
 var watchify = require('watchify');
 var debowerify = require('debowerify');
 var babelify = require('babelify');
-var deamdify = require('deamdify');
 var minifyify = require('minifyify');
 
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 
-var combiner = require('stream-combiner2');
-
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
-var sass = require('node-sass');
 
 var path = require('path');
 var fs = require('fs');
@@ -117,7 +111,6 @@ gulp.task('js', function() {
 
     b.transform(babelify);
     b.transform(debowerify);
-    b.transform(deamdify);
 
     b.plugin(minifyify, {map: outputFilename + '.map', output: path.join(paths.js.dest, outputFilename + '.map')});
 
