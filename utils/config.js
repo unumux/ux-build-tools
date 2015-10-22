@@ -8,7 +8,6 @@ module.exports = function() {
   if(config && config.local) {
     return config;
   }
-  console.log('FIRST')
 
   config.bowerPackageFolder = bower.config.directory;
 
