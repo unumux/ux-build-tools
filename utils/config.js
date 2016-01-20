@@ -2,6 +2,8 @@ var bower = require('bower');
 var path = require('path');
 var fs = require('fs');
 
+var argv = require('minimist')(process.argv.slice(2));
+
 var config = {};
 
 module.exports = function() {
@@ -12,6 +14,7 @@ module.exports = function() {
   config.bowerPackageFolder = bower.config.directory;
 
   config.local = require(path.join(process.cwd(), 'ux.json'));
+  config.open = argv.open;
 
   var home = getUserHome();
   var globalConfigPath = path.join(home, '.ux-global.json');

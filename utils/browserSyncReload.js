@@ -2,7 +2,10 @@ var browserSync = require('browser-sync').create();
 var config = require('./config.js')();
 var loginMiddleware = require('./login-middleware.js');
 
-var browserSyncConfig = {}
+var browserSyncConfig = {
+    open: config.open === false ? false : true
+}
+
 if(config.local.server) {
     browserSyncConfig.server = "./";
 } else if(config.local.proxy) {
