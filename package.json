@@ -1,6 +1,6 @@
 {
-  "name": "@unumux/ui-framework",
-  "version": "2.6.5",
+  "name": "@unumux/ux-build-tools",
+  "version": "3.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
