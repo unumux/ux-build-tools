@@ -1,7 +1,6 @@
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+var $ = require("gulp-load-plugins")();
 
 module.exports = function(e) {
-    $.notify().write(e)
-    this.emit('end');
-}
+    $.notify().write(e);
+    this.emit("end");
+};

@@ -1,6 +1,5 @@
-var gulp = require('gulp');
-var requireDir = require('require-dir');
+var gulp = require("gulp");
+var requireDir = require("require-dir");
+requireDir("./tasks");
 
-var tasks = requireDir('./tasks');
-
-gulp.task('default', ['styles', 'js', 'watch']);
+gulp.task("default", ["styles", "js", "watch"]);
