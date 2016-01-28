@@ -1,22 +1,35 @@
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+var $    = require('gulp-load-plugins')();
 
-var config = require('../utils/config')();
+var config       = require('../utils/config')();
 var errorHandler = require('../utils/errorHandler.js');
-var reload = require('../utils/browserSyncReload.js')();
+var reload       = require('../utils/browserSyncReload.js')();
 
 //postCSS plugin declarations
-var postcss = require('gulp-postcss');
-    autoprefixer = require('autoprefixer');
-    imageInliner = require('postcss-image-inliner');
-    cssnano = require('cssnano');
+var postcss       = require('gulp-postcss');
+    autoprefixer  = require('autoprefixer');
+    imageInliner  = require('postcss-image-inliner');
+    svgo          = require('postcss-svgo');
+    cssnano       = require('cssnano');
 
 gulp.task('styles', function() {
-    var processors =[
-      autoprefixer,
-      cssnano,
-      imageInliner
-  ];
+    var processors;
+    if(!config.local.scss.minify) {
+      processors = [
+        autoprefixer,
+        svgo,
+        imageInliner,
+        cssnano({
+          discardDuplicates: false
+        })
+      ];
+    } else {
+      processors = [
+        autoprefixer,
+        svgo,
+        imageInliner
+      ];
+    }
 
     if(!config.local.scss) return; // if the scss paths aren't set, skip this step
 
@@ -25,8 +38,8 @@ gulp.task('styles', function() {
         .pipe($.sass({
             includePaths: [config.bowerPackageFolder]
         })) // compile the sass
-        .on('error', errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe(postcss(processors))
+        .on('error', errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe($.if(config.local.scss.minify !== false, $.rename({extname: ".min.css"})))
         .pipe($.sourcemaps.write('./', { sourceRoot: './' })) // start sourcemap processing
         .pipe(gulp.dest(config.local.scss.dest)) // output minified css to the output dir
