@@ -14,7 +14,7 @@ if(config.local.server) {
         target: config.local.proxy,
     }
 
-    if(config.global || config.global.login || config.global.login.username || config.global.login.password) {
+    if(config.global && config.global.login && (config.global.login.username || config.global.login.password)) {
       browserSyncConfig.proxy.middleware = loginMiddleware(config.global.login.username, config.global.login.password)
     }
 
