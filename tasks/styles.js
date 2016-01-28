@@ -32,8 +32,8 @@ gulp.task("styles", function() {
         .pipe($.sass({
             includePaths: [config.bowerPackageFolder]
         })) // compile the sass
-        .pipe(postcss(processors))
         .on("error", errorHandler) // if there are errors during sass compile, call errorHandler
+        .pipe(postcss(processors))
         .pipe($.if(config.local.scss.minify !== false, $.rename({
             extname: ".min.css"
         })))
