@@ -1,4 +1,6 @@
 var gulp = require("gulp");
+var $ = require("gulp-load-plugins")();
+
 var path = require("path");
 var _ = require("lodash");
 
@@ -22,40 +24,55 @@ var presets = [
 
 
 gulp.task("js", function() {
-    if(!config.local.js || !config.local.js.main || !config.local.compileJs) return; // if JS paths aren't set or if JS compiling is disabled, skip
+    if(!config.local.js) return; // if JS paths aren't set or if JS compiling is disabled, skip
 
-    var customOpts = {
-        entries: config.local.js.main,
-        debug: true
-    };
+    if(config.local.js.legacy && config.local.js.legacy.concat) {
 
-    var baseName = path.basename(config.local.js.main, path.extname(config.local.js.main));
-    var outputFilename = baseName + ".min.js";
+        return gulp.src(config.local.js.src)
+            .pipe($.ignore("site.min.js"))
+            .pipe($.sourcemaps.init())
+            .pipe($.concat("site.min.js"))
+            .pipe($.uglify())
+            .pipe($.sourcemaps.write("./", {
+                sourceRoot: "./"
+            }))
+            .pipe(gulp.dest(config.local.js.dest))
+            .pipe(reload({stream: true}));
 
-    var opts = _.assign({}, watchify.args, customOpts);
-    var b = watchify(browserify(opts));
+    } else if(config.local.js.main && config.local.compileJs) {
+        var customOpts = {
+            entries: config.local.js.main,
+            debug: true
+        };
 
-    b.transform(babelify.configure({
-        presets: presets
-    }));
+        var baseName = path.basename(config.local.js.main, path.extname(config.local.js.main));
+        var outputFilename = baseName + ".min.js";
 
-    b.transform(debowerify);
+        var opts = _.assign({}, watchify.args, customOpts);
+        var b = watchify(browserify(opts));
 
-    b.plugin(minifyify, {map: outputFilename + ".map", output: path.join(config.local.js.dest, outputFilename + ".map")});
+        b.transform(babelify.configure({
+            presets: presets
+        }));
 
-    b.on("update", bundle);
-    // b.on('log', $.util.log); // output build logs to terminal
+        b.transform(debowerify);
 
-    return bundle();
+        b.plugin(minifyify, {map: outputFilename + ".map", output: path.join(config.local.js.dest, outputFilename + ".map")});
+
+        b.on("update", bundle);
+        // b.on('log', $.util.log); // output build logs to terminal
+
+        return bundle();
 
 
-    function bundle() {
-        return b.bundle()
-          .on("error", errorHandler)
-          .pipe(source(outputFilename))
-          .pipe(buffer())
-          .pipe(gulp.dest(config.local.js.dest))
-          .pipe(reload({stream: true}));
+        function bundle() {
+            return b.bundle()
+              .on("error", errorHandler)
+              .pipe(source(outputFilename))
+              .pipe(buffer())
+              .pipe(gulp.dest(config.local.js.dest))
+              .pipe(reload({stream: true}));
+        }
     }
 
 });
