@@ -31,8 +31,10 @@ gulp.task("js", function() {
         return gulp.src(config.local.js.src)
             .pipe($.ignore("site.min.js"))
             .pipe($.sourcemaps.init())
-            .pipe($.concat("site.min.js"))
+            .pipe($.cached('scripts'))
             .pipe($.uglify())
+            .pipe($.remember('scripts'))
+            .pipe($.concat("site.min.js"))
             .pipe($.sourcemaps.write("./", {
                 sourceRoot: "./"
             }))
