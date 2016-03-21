@@ -1,6 +1,6 @@
 {
   "name": "@unumux/ux-build-tools",
-  "version": "3.0.4",
+  "version": "0.0.0-semantically-released",
   "description": "",
   "main": "index.js",
   "scripts": {
