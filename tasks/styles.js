@@ -1,6 +1,8 @@
 var gulp = require("gulp");
 var $ = require("gulp-load-plugins")();
 
+var moduleImporter = require("sass-module-importer");
+
 var config = require("../utils/config")();
 var errorHandler = require("../utils/errorHandler.js");
 var reload = require("../utils/browserSyncReload.js")();
@@ -30,7 +32,10 @@ gulp.task("styles", function() {
     return gulp.src(config.local.scss.src)
         .pipe($.sourcemaps.init()) // start sourcemap processing
         .pipe($.sass({
-            includePaths: [config.bowerPackageFolder]
+            includePaths: [config.bowerPackageFolder],
+            importer: moduleImporter({
+                basedir: process.cwd()
+            })
         })) // compile the sass
         .on("error", errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe(postcss(processors))
