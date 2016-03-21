@@ -31,9 +31,9 @@ gulp.task("js", function() {
         return gulp.src(config.local.js.src)
             .pipe($.ignore("site.min.js"))
             .pipe($.sourcemaps.init())
-            .pipe($.cached('scripts'))
+            .pipe($.cached("scripts"))
             .pipe($.uglify())
-            .pipe($.remember('scripts'))
+            .pipe($.remember("scripts"))
             .pipe($.concat("site.min.js"))
             .pipe($.sourcemaps.write("./", {
                 sourceRoot: "./"
@@ -65,16 +65,15 @@ gulp.task("js", function() {
         // b.on('log', $.util.log); // output build logs to terminal
 
         return bundle();
+    }
 
-
-        function bundle() {
-            return b.bundle()
-              .on("error", errorHandler)
-              .pipe(source(outputFilename))
-              .pipe(buffer())
-              .pipe(gulp.dest(config.local.js.dest))
-              .pipe(reload({stream: true}));
-        }
+    function bundle() {
+        return b.bundle()
+          .on("error", errorHandler)
+          .pipe(source(outputFilename))
+          .pipe(buffer())
+          .pipe(gulp.dest(config.local.js.dest))
+          .pipe(reload({stream: true}));
     }
 
 });
