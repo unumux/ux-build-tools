@@ -11,7 +11,7 @@ gulp.task("watch", function() {
     }
 
     if (config.local.js.legacy && config.local.js.legacy.concat) {
-        var watcher = gulp.watch([config.local.js.src, "!**/site.min.js"], ["js"]);
+        var watcher = gulp.watch([config.local.js.src, "!*.min.js"], ["js"]);
 
         watcher.on("change", function(event) {
             if (event.type === "deleted") {
