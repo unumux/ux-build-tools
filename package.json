@@ -1,7 +1,7 @@
 {
   "name": "@unumux/ux-build-tools",
   "version": "0.0.0-semantically-released",
-  "description": "",
+  "description": "Gulp-based build tools that provides, SASS/JS compiling and minification, autoprefixer, browsersync, and more",
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
