@@ -9,6 +9,10 @@ gulp.task("watch", function() {
     if (config.local.scss) {
         gulp.watch(config.local.scss.src, ["styles"]);
     }
+    
+    if (config.local.js && config.local.js.src) {
+        gulp.watch(config.local.js.src, ["eslint"]);
+    }
 
     if (config.local.js.legacy && config.local.js.legacy.concat) {
         var watcher = gulp.watch([config.local.js.src, "!*.min.js"], ["js"]);

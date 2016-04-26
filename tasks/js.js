@@ -42,6 +42,7 @@ gulp.task("js", function() {
             .pipe(reload({stream: true}));
 
     } else if(config.local.js.main && config.local.compileJs) {
+        
         var customOpts = {
             entries: config.local.js.main,
             debug: true
@@ -76,4 +77,11 @@ gulp.task("js", function() {
           .pipe(reload({stream: true}));
     }
 
+});
+
+
+gulp.task("eslint", function() {
+    gulp.src([config.local.js.src, "!**/*.min.js"])
+        .pipe($.eslint(config.eslint))
+        .pipe($.eslint.format());
 });
