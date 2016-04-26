@@ -13,6 +13,7 @@ var postcss = require("gulp-postcss"),
     imageInliner = require("postcss-image-inliner"),
     svgo = require("postcss-svgo"),
     cssnano = require("cssnano"),
+    postcssScss = require("postcss-scss"),
     stylelint = require("stylelint"),
     postcssReporter = require("postcss-reporter");
 
@@ -40,7 +41,7 @@ gulp.task("styles", function() {
     if (!config.local.scss) return; // if the scss paths aren't set, skip this step
     return gulp.src(config.local.scss.src)
         .pipe($.sourcemaps.init()) // start sourcemap processing
-        .pipe(postcss(preCompileProcessors))
+        .pipe(postcss(preCompileProcessors, { syntax: postcssScss }))
         .on("error", errorHandler) // if there are errors during postcss, call errorHandler        
         .pipe($.sass({
             includePaths: [config.bowerPackageFolder],
