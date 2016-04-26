@@ -35,7 +35,7 @@ gulp.task("styles", function() {
         processors.push(cssnano({
             discardDuplicates: false
         }));
-    };
+    }
     
     if (!config.local.scss) return; // if the scss paths aren't set, skip this step
     return gulp.src(config.local.scss.src)
