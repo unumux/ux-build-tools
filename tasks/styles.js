@@ -12,9 +12,19 @@ var postcss = require("gulp-postcss"),
     autoprefixer = require("autoprefixer"),
     imageInliner = require("postcss-image-inliner"),
     svgo = require("postcss-svgo"),
-    cssnano = require("cssnano");
+    cssnano = require("cssnano"),
+    stylelint = require("stylelint"),
+    postcssReporter = require("postcss-reporter");
 
 gulp.task("styles", function() {
+    var preCompileProcessors = [
+        stylelint({ 
+            config: config.stylelint,
+            configBasedir: __dirname 
+        }),
+        postcssReporter({ clearMessages: true })
+    ];
+    
     var processors = [
         autoprefixer,
         svgo,
@@ -25,12 +35,13 @@ gulp.task("styles", function() {
         processors.push(cssnano({
             discardDuplicates: false
         }));
-    }
-
+    };
+    
     if (!config.local.scss) return; // if the scss paths aren't set, skip this step
-
     return gulp.src(config.local.scss.src)
         .pipe($.sourcemaps.init()) // start sourcemap processing
+        .pipe(postcss(preCompileProcessors))
+        .on("error", errorHandler) // if there are errors during postcss, call errorHandler        
         .pipe($.sass({
             includePaths: [config.bowerPackageFolder],
             importer: moduleImporter({

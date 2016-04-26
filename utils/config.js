@@ -22,6 +22,16 @@ module.exports = function() {
     if (fs.existsSync(globalConfigPath)) {
         config.global = require(globalConfigPath);
     }
+    
+    var stylelintConfigPath = path.join(process.cwd(), ".stylelintrc");
+    
+    if(fs.existsSync(stylelintConfigPath)) {
+        config.stylelint = require(stylelintConfigPath);
+    } else {
+        config.stylelint = {
+            "extends": "@unumux/stylelint-config-unumux"
+        };
+    }
 
     return config;
 };
