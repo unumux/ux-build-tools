@@ -33,9 +33,17 @@ gulp.task("styles", function() {
         .pipe($.sourcemaps.init()) // start sourcemap processing
         .pipe($.sass({
             includePaths: [config.bowerPackageFolder],
-            importer: moduleImporter({
-                basedir: process.cwd()
-            })
+            importer: [
+                function(url, prev, done) {
+                    if(url.indexOf("~") === 0 && url.indexOf("/") !== 1) {
+                        moduleImporter({
+                            basedir: process.cwd()
+                        })(url.substr(1), prev, done);
+                    } else {
+                        return null;
+                    }
+                }
+            ]
         })) // compile the sass
         .on("error", errorHandler) // if there are errors during sass compile, call errorHandler
         .pipe(postcss(processors))
