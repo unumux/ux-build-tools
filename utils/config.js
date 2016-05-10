@@ -22,6 +22,12 @@ module.exports = function() {
     if (fs.existsSync(globalConfigPath)) {
         config.global = require(globalConfigPath);
     }
+    
+    var babelConfigPath = path.join(process.cwd(), ".babelrc");
+    config.babel = {};
+    if (fs.existsSync(babelConfigPath)) {
+        config.babel = JSON.parse(fs.readFileSync(babelConfigPath));
+    }
 
     return config;
 };
