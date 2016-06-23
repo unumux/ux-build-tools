@@ -29,6 +29,7 @@ gulp.task("js", function() {
     if(config.local.js.legacy && config.local.js.legacy.concat) {
 
         return gulp.src(config.local.js.src)
+            .pipe($.plumber(errorHandler))
             .pipe($.ignore("site.min.js"))
             .pipe($.sourcemaps.init())
             .pipe($.cached("scripts"))
@@ -69,11 +70,12 @@ gulp.task("js", function() {
 
     function bundle() {
         return b.bundle()
-          .on("error", errorHandler)
-          .pipe(source(outputFilename))
-          .pipe(buffer())
-          .pipe(gulp.dest(config.local.js.dest))
-          .pipe(reload({stream: true}));
+            .on("error", errorHandler)
+            .pipe($.plumber(errorHandler))
+            .pipe(source(outputFilename))
+            .pipe(buffer())
+            .pipe(gulp.dest(config.local.js.dest))
+            .pipe(reload({stream: true}));
     }
 
 });

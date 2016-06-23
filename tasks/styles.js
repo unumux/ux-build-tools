@@ -30,6 +30,7 @@ gulp.task("styles", function() {
     if (!config.local.scss) return; // if the scss paths aren't set, skip this step
 
     return gulp.src(config.local.scss.src)
+        .pipe($.plumber(errorHandler))
         .pipe($.sourcemaps.init()) // start sourcemap processing
         .pipe($.sass({
             includePaths: [config.bowerPackageFolder],
