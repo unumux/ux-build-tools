@@ -19,12 +19,15 @@ var postcss = require("gulp-postcss"),
 
 gulp.task("styles", function() {
     var preCompileProcessors = [
-        stylelint({ 
-            config: config.stylelint,
-            configBasedir: __dirname 
-        }),
         postcssReporter({ clearMessages: true })
     ];
+
+    if(config.local.linting && config.local.linting.styles) {
+        preCompileProcessors.push(stylelint({ 
+            config: config.stylelint,
+            configBasedir: __dirname 
+        }));
+    }
     
     var processors = [
         autoprefixer,
