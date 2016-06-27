@@ -22,6 +22,16 @@ module.exports = function() {
     if (fs.existsSync(globalConfigPath)) {
         config.global = require(globalConfigPath);
     }
+    
+    var eslintConfigPath = path.join(process.cwd(), ".eslintrc.json");
+    
+    if(fs.existsSync(eslintConfigPath)) {
+        config.eslint = require(eslintConfigPath);
+    } else {
+        config.eslint = {
+            "extends": "@unumux/unumux"
+        };
+    }
 
     return config;
 };
