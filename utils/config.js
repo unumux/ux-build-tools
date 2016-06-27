@@ -32,6 +32,16 @@ module.exports = function() {
             "extends": "@unumux/unumux"
         };
     }
+    
+    var stylelintConfigPath = path.join(process.cwd(), ".stylelintrc");
+    
+    if(fs.existsSync(stylelintConfigPath)) {
+        config.stylelint = require(stylelintConfigPath);
+    } else {
+        config.stylelint = {
+            "extends": "@unumux/stylelint-config-unumux"
+        };
+    }
 
     return config;
 };
