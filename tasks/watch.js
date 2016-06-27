@@ -10,7 +10,7 @@ gulp.task("watch", function() {
         gulp.watch(config.local.scss.src, ["styles"]);
     }
     
-    if (config.local.js && config.local.js.src) {
+    if (config.local.js && config.local.js.src && config.local.linting && config.local.linting.js) {
         gulp.watch(config.local.js.src, ["eslint"]);
     }
 
