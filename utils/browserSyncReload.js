@@ -1,10 +1,13 @@
 var browserSync = require("browser-sync").create();
 var config = require("./config.js")();
+var headerMiddleware = require("./header-middleware.js");
 var loginMiddleware = require("./login-middleware.js");
 
 var browserSyncConfig = {
     open: config.open === false ? false : true
 };
+
+browserSyncConfig.middleware = [headerMiddleware];
 
 if (config.local.server) {
     browserSyncConfig.server = "./";
