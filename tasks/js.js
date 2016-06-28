@@ -43,12 +43,12 @@ gulp.task("js", function() {
             .pipe(reload({stream: true}));
 
     } else if(config.local.js.main && config.local.compileJs) {
-        
         var customOpts = {
             entries: config.local.js.main,
-            debug: true
+            debug: true,
+            paths: [path.join(process.cwd(), "node_modules")]
         };
-
+ 
         var baseName = path.basename(config.local.js.main, path.extname(config.local.js.main));
         var outputFilename = baseName + ".min.js";
 
