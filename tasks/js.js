@@ -17,11 +17,6 @@ var config = require("../utils/config.js")();
 var errorHandler = require("../utils/errorHandler.js");
 var reload = require("../utils/browserSyncReload.js")();
 
-var presets = [
-    require("babel-preset-es2015"),
-    require("babel-preset-react")
-];
-
 
 gulp.task("js", function() {
     if(!config.local.js) return; // if JS paths aren't set or if JS compiling is disabled, skip
@@ -55,9 +50,7 @@ gulp.task("js", function() {
         var opts = _.assign({}, watchify.args, customOpts);
         var b = watchify(browserify(opts));
 
-        b.transform(babelify.configure({
-            presets: presets
-        }));
+        b.transform(babelify.configure(config.babel));
 
         b.transform(debowerify);
 

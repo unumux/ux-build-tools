@@ -43,9 +43,26 @@ module.exports = function() {
         };
     }
 
+    config.babel = loadBabelConfig();
+
     return config;
 };
 
 function getUserHome() {
     return process.env[(process.platform == "win32") ? "USERPROFILE" : "HOME"];
+}
+
+function loadBabelConfig() {
+    var babelConfigPath = path.join(process.cwd(), ".babelrc");
+
+    if(fs.existsSync(babelConfigPath)) {
+        return JSON.parse(fs.readFileSync(babelConfigPath));
+    } else {
+        return {
+            presets: [
+                require("babel-preset-es2015"),
+                require("babel-preset-react")
+            ]
+        };
+    }
 }
