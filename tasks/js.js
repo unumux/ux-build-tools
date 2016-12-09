@@ -12,6 +12,7 @@ var minifyify = require("minifyify");
 
 var source = require("vinyl-source-stream");
 var buffer = require("vinyl-buffer");
+var merge = require("merge-stream");
 
 var config = require("../utils/config.js")();
 var errorHandler = require("../utils/errorHandler.js");
@@ -38,31 +39,38 @@ gulp.task("js", function() {
             .pipe(reload({stream: true}));
 
     } else if(config.local.js.main && config.local.compileJs) {
-        var customOpts = {
-            entries: config.local.js.main,
-            debug: true,
-            paths: [path.join(process.cwd(), "node_modules")]
-        };
- 
-        var baseName = path.basename(config.local.js.main, path.extname(config.local.js.main));
-        var outputFilename = baseName + ".min.js";
+        var jsMainArray = typeof config.local.js.main === "string" ? [config.local.js.main] : config.local.js.main;
 
-        var opts = _.assign({}, watchify.args, customOpts);
-        var b = watchify(browserify(opts));
+        var watchifyTasks = jsMainArray.map(function(jsMain) {
 
-        b.transform(babelify.configure(config.babel));
+            var customOpts = {
+                entries: jsMain,
+                debug: true,
+                paths: [path.join(process.cwd(), "node_modules")]
+            };
+    
+            var baseName = path.basename(jsMain, path.extname(jsMain));
+            var outputFilename = baseName + ".min.js";
 
-        b.transform(debowerify);
+            var opts = _.assign({}, watchify.args, customOpts);
+            var b = watchify(browserify(opts));
 
-        b.plugin(minifyify, {map: outputFilename + ".map", output: path.join(config.local.js.dest, outputFilename + ".map")});
+            b.transform(babelify.configure(config.babel));
 
-        b.on("update", bundle);
-        // b.on('log', $.util.log); // output build logs to terminal
+            b.transform(debowerify);
 
-        return bundle();
+            b.plugin(minifyify, {map: outputFilename + ".map", output: path.join(config.local.js.dest, outputFilename + ".map")});
+
+            b.on("update", bundle.bind(null, b, outputFilename));
+            // b.on('log', $.util.log); // output build logs to terminal
+
+            return bundle(b, outputFilename);
+        });
+
+        return merge(watchifyTasks);
     }
 
-    function bundle() {
+    function bundle(b, outputFilename) {
         return b.bundle()
             .on("error", errorHandler)
             .pipe($.plumber(errorHandler))
