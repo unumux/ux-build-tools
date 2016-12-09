@@ -23,12 +23,13 @@ if (config.local.server) {
 
 }
 
-
-if (browserSyncConfig) {
-    browserSync.init(browserSyncConfig);
-}
-
+var inited = false;
 
 module.exports = function() {
+    if (config.tasks.length === 0 && !inited && browserSyncConfig) {
+        browserSync.init(browserSyncConfig);
+        inited = true;
+    }
+
     return browserSync.reload;
 };

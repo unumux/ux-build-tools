@@ -15,6 +15,7 @@ module.exports = function() {
 
     config.local = require(path.join(process.cwd(), "ux.json"));
     config.open = argv.open;
+    config.tasks = argv._;
 
     var home = getUserHome();
     var globalConfigPath = path.join(home, ".ux-global.json");

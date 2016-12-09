@@ -53,7 +53,7 @@ gulp.task("js", function() {
             var outputFilename = baseName + ".min.js";
 
             var opts = _.assign({}, watchify.args, customOpts);
-            var b = watchify(browserify(opts));
+            var b = config.tasks.length === 0 ? watchify(browserify(opts)) : browserify(opts);
 
             b.transform(babelify.configure(config.babel));
 
@@ -61,7 +61,9 @@ gulp.task("js", function() {
 
             b.plugin(minifyify, {map: outputFilename + ".map", output: path.join(config.local.js.dest, outputFilename + ".map")});
 
-            b.on("update", bundle.bind(null, b, outputFilename));
+            if(config.tasks.length === 0) {
+                b.on("update", bundle.bind(null, b, outputFilename));
+            }
             // b.on('log', $.util.log); // output build logs to terminal
 
             return bundle(b, outputFilename);
