@@ -6,7 +6,7 @@ var argv = require("minimist")(process.argv.slice(2));
 
 var config = {};
 
-module.exports = function() {
+module.exports = function () {
     if (config && config.local) {
         return config;
     }
@@ -23,21 +23,21 @@ module.exports = function() {
     if (fs.existsSync(globalConfigPath)) {
         config.global = require(globalConfigPath);
     }
-    
+
     var eslintConfigPath = path.join(process.cwd(), ".eslintrc.json");
-    
-    if(fs.existsSync(eslintConfigPath)) {
+
+    if (fs.existsSync(eslintConfigPath)) {
         config.eslint = require(eslintConfigPath);
     } else {
         config.eslint = {
             "extends": "@unumux/unumux"
         };
     }
-    
+
     var stylelintConfigPath = path.join(process.cwd(), ".stylelintrc");
-    
-    if(fs.existsSync(stylelintConfigPath)) {
-        config.stylelint = require(stylelintConfigPath);
+
+    if (fs.existsSync(stylelintConfigPath)) {
+        config.stylelint = JSON.parse(fs.readFileSync(stylelintConfigPath));
     } else {
         config.stylelint = {
             "extends": "@unumux/stylelint-config-unumux"
@@ -56,7 +56,7 @@ function getUserHome() {
 function loadBabelConfig() {
     var babelConfigPath = path.join(process.cwd(), ".babelrc");
 
-    if(fs.existsSync(babelConfigPath)) {
+    if (fs.existsSync(babelConfigPath)) {
         return JSON.parse(fs.readFileSync(babelConfigPath));
     } else {
         return {
