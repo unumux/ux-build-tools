@@ -65,7 +65,7 @@
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
     "isparta": "^4.0.0",
-    "semantic-release": "^4.3.5",
+    "semantic-release": "^17.2.3",
     "validate-commit-message": "^3.0.1"
   },
   "repository": {
